@@ -54,6 +54,7 @@ const emit = defineEmits(["onClick"]);
 
 .btn-busy {
   background: url("@/assets/loading.gif") no-repeat center;
+  background-size: 20px;
   pointer-events: none;
 }
 
