@@ -5,7 +5,7 @@ const cors = require("cors");
 
 const validator = require("./validator");
 
-const path = __dirname + "/views/";
+const path = __dirname + "/web-form/dist";
 
 const corsOptions = {
   origin: "http://localhost:5173",
