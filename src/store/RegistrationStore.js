@@ -1,9 +1,13 @@
-import RegistrationFactory from '../utils/RegistrationFactory'
+import RegistrationFactory from "../utils/RegistrationFactory";
 
 export default {
-    registerData: RegistrationFactory.createRegistrationInitData(),
+  registerData: RegistrationFactory.createRegistrationInitData(),
 
-    updateRegisterData(values) {
-        this.registerData = {...this.registerData, ...values}
-    }
-}
+  updateRegisterData(values) {
+    this.registerData = { ...this.registerData, ...values };
+  },
+
+  clearData() {
+    this.registerData = RegistrationFactory.createRegistrationInitData();
+  },
+};

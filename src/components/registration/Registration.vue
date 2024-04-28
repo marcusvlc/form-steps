@@ -5,6 +5,8 @@
     <component
       @onContinue="onContinue"
       @onBack="onBack"
+      @onRegisterSuccess="onRegisterSuccess"
+      @onRegisterFail="onRegisterFail"
       :is="currentComponent"
     />
   </div>
@@ -61,6 +63,16 @@ const onContinue = (updatedFormData) => {
   RegistrationStore.updateRegisterData(updatedFormData);
 
   goToNextStep();
+};
+
+const onRegisterSuccess = () => {
+  RegistrationStore.clearData();
+  currentStep.value = 0;
+  alert("Usuário registrado com sucesso!");
+};
+
+const onRegisterFail = (error) => {
+  alert(error);
 };
 
 const onBack = () => {

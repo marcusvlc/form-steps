@@ -100,7 +100,7 @@ const formData = reactive({
   ...RegistrationStore.registerData,
 });
 
-const emit = defineEmits("onRegister", "onBack");
+const emit = defineEmits(["onRegisterSuccess", "onRegisterFail", "onBack"]);
 
 const onRegister = () => {
   const diffFields = Validator.getFieldsWithDiffValue(
@@ -123,8 +123,16 @@ const onRegister = () => {
 
   confirmBusy.value = true;
   RegistrationService.registerUser({ ...formData })
-    .then(() => {})
-    .catch(() => {})
+    .then(async (res) => {
+      if (!res.ok) {
+        throw new Error(await res.text());
+      }
+
+      emit("onRegisterSuccess");
+    })
+    .catch((err) => {
+      emit("onRegisterFail", err.message);
+    })
     .finally(() => {
       confirmBusy.value = false;
     });
