@@ -10,8 +10,8 @@ class Validator {
     }
 
     isValidCNPJ(cnpj) {
-        const cnpjRegex = /^\d{2}\.?\d{3}\.?\d{3}\/\d{4}\-?\d{2}$/
-
+        const cnpjRegex = /^\d{2}\.?\d{3}\.?\d{3}\/?\d{4}\-?\d{2}$/
+        console.log(cnpj, cnpjRegex.test(cnpj));
         return cnpjRegex.test(cnpj)
     }
 

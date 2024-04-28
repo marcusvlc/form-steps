@@ -5,7 +5,7 @@
     @mouseover="isHovering = true"
     @mouseout="isHovering = false"
     class="app-btn"
-    type="submit"
+    :type="buttonType"
     :value="currentText"
   />
 </template>
@@ -37,6 +37,10 @@ const getClass = () => {
 const currentText = computed(() => (props.busy ? "" : props.text));
 
 const busyClass = computed(() => (props.busy ? "btn-busy" : ""));
+
+const buttonType = computed(() =>
+  props.variant === ButtonColorVariant.PRIMARY ? "submit" : "button"
+);
 
 const emit = defineEmits(["onClick"]);
 </script>
