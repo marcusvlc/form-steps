@@ -109,17 +109,19 @@ const onRegister = () => {
     RegistrationFieldsUtils.getFieldsToCompare(currentData.isCPF)
   );
 
-  const humanizedFieldsNames = diffFields.map(
-    RegistrationFieldsUtils.getHumanizedFieldName
-  );
+  if (diffFields.length) {
+    const humanizedFieldsNames = diffFields.map(
+      RegistrationFieldsUtils.getHumanizedFieldName
+    );
 
-  const registerConfirmation = confirm(
-    `Os seguintes campos foram preenchidos com valores diferentes aos preenchidos nos passos anteriores: ${humanizedFieldsNames.join(
-      ", "
-    )}. Deseja continuar?`
-  );
+    const registerConfirmation = confirm(
+      `Os seguintes campos foram preenchidos com valores diferentes aos preenchidos nos passos anteriores: ${humanizedFieldsNames.join(
+        ", "
+      )}. Deseja continuar?`
+    );
 
-  if (!registerConfirmation) return;
+    if (!registerConfirmation) return;
+  }
 
   confirmBusy.value = true;
   RegistrationService.registerUser({ ...formData })
