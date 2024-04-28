@@ -1,7 +1,9 @@
 <template>
   <input
-    :class="[variant, size]"
+    :class="[getClass(), size]"
     @click.prevent="emit('onClick')"
+    @mouseover="isHovering = true"
+    @mouseout="isHovering = false"
     class="app-btn"
     type="submit"
     :value="text"
@@ -11,12 +13,25 @@
 <script setup>
 import ButtonColorVariant from "../../enums/button/ButtonColorVariant";
 import ButtonSize from "../../enums/button/ButtonSize";
+import { ref } from "vue";
 
 const props = defineProps({
   variant: { type: String, default: ButtonColorVariant.PRIMARY },
   size: { type: String, default: ButtonSize.SMALL },
   text: { type: String, default: "Continuar" },
 });
+
+const isHovering = ref(false);
+
+const getClass = () => {
+  if (isHovering.value && props.variant === ButtonColorVariant.PRIMARY)
+    return ButtonColorVariant.SECONDARY;
+
+  if (isHovering.value && props.variant === ButtonColorVariant.SECONDARY)
+    return ButtonColorVariant.PRIMARY;
+
+  return props.variant;
+};
 
 const emit = defineEmits(["onClick"]);
 </script>
@@ -45,20 +60,9 @@ const emit = defineEmits(["onClick"]);
   color: $white;
 }
 
-.primary:hover {
-  background-color: $white;
-  color: $orange;
-  border: 1px solid $orange;
-}
-
 .secondary {
   background-color: $white;
   color: $orange;
   border: 1px solid $orange;
-}
-
-.secondary:hover {
-  background-color: $orange;
-  color: $white;
 }
 </style>
