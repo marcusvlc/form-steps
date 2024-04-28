@@ -1,0 +1,37 @@
+@import './colors.scss';
+
+.text-field {
+    display: flex;
+    flex-direction: column;
+
+    input {
+        margin-top: 5px;
+    }
+}
+
+.radio-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    input {
+        margin-right: 3px;
+    }
+}
+
+.field {
+    margin-bottom: 15px;
+}
+
+.text-input, .date-input {
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid $black;
+    padding-left: 4px;
+}
+
+.button-container {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
