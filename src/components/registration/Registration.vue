@@ -16,6 +16,8 @@ import FirstStepVue from "./FirstStep.vue";
 import SecondStep from "./SecondStep.vue";
 import RegistrationStore from "../../store/RegistrationStore";
 import StepView from "../commons/StepView.vue";
+import ThirdStep from "./ThirdStep.vue";
+import FourthStep from "./FourthStep.vue";
 
 const formSteps = [
   {
@@ -25,6 +27,14 @@ const formSteps = [
   {
     title: (isCPF) => (isCPF ? "Pessoa física" : "Pessoa jurídica"),
     component: () => SecondStep,
+  },
+  {
+    title: () => "Senha de acesso",
+    component: () => ThirdStep,
+  },
+  {
+    title: () => "Revise suas informações",
+    component: () => FourthStep,
   },
 ];
 
@@ -47,8 +57,8 @@ const goToPreviousStep = () => {
   currentStep.value = Math.max(currentStep.value - 1, 0);
 };
 
-const onContinue = (values, stepFrom) => {
-  RegistrationStore.updateRegisterData(values);
+const onContinue = (updatedFormData) => {
+  RegistrationStore.updateRegisterData(updatedFormData);
 
   goToNextStep();
 };
@@ -59,16 +69,20 @@ const onBack = () => {
 </script>
 
 <style lang="scss" scoped>
+@import "@/styles/colors";
+
 .registration-container {
   display: flex;
   flex-direction: column;
   width: 350px;
 
   &__title {
+    color: $black;
     font-size: 30px;
-    font-weight: bold;
+    font-weight: bolder;
     margin-bottom: 35px;
     margin-top: 8px;
+    white-space: nowrap;
   }
 }
 </style>

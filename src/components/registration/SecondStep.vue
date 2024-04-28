@@ -7,12 +7,12 @@
 
     <label class="text-field field" v-if="formData.isCPF">
       CPF
-      <input class="text-input" type="email" v-model="formData.cpf" required />
+      <input class="text-input" type="text" v-model="formData.cpf" required />
     </label>
 
     <label class="text-field field" v-else>
       CNPJ
-      <input class="text-input" type="email" v-model="formData.cnpj" required />
+      <input class="text-input" type="text" v-model="formData.cnpj" required />
     </label>
 
     <label v-if="formData.isCPF" class="text-field field">
@@ -37,7 +37,13 @@
 
     <label class="text-field field">
       Telefone
-      <input class="text-input" type="text" v-model="formData.phone" required />
+      <input
+        class="text-input"
+        type="text"
+        v-model="formData.phone"
+        placeholder="(99) 9999-9999"
+        required
+      />
     </label>
 
     <div class="button-container">
@@ -82,7 +88,7 @@ const onContinue = () => {
     return alert("Necessário preencher um telefone válido");
   }
 
-  emit("onContinue");
+  emit("onContinue", { ...formData });
 };
 </script>
 

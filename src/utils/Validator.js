@@ -27,6 +27,14 @@ class Validator {
 
         return new Date(dateStr) < dtToday;
     }
+
+    isValidPassword(password) {
+        return !!password
+    }
+
+    getFieldsWithDiffValue(obj, objToCompare, keysList) {
+        return keysList.filter(key => obj[key] !== objToCompare[key])
+    }
 }
 
 export default new Validator()

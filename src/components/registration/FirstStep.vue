@@ -42,8 +42,7 @@ const onContinue = () => {
   }
 
   emit("onContinue", {
-    isCPF: formData.isCPF,
-    email: formData.email,
+    ...formData,
   });
 };
 </script>
