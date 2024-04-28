@@ -62,7 +62,6 @@ const onBack = () => {
 .registration-container {
   display: flex;
   flex-direction: column;
-  height: 700px;
   width: 350px;
 
   &__title {

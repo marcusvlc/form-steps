@@ -25,6 +25,7 @@ const props = defineProps({
 
   &__current-step {
     color: $orange;
+    font-weight: bold;
   }
 }
 </style>
