@@ -10,13 +10,13 @@ module.exports = {
     birthDate,
     openDate,
   }) {
-    const errorOnCommonFields = !!email && !!password && !!phone && !!name;
+    const errorOnCommonFields = !(!!email && !!password && !!phone && !!name);
 
-    const errorOnPersonFields = isCPF && !!cpf && !!birthDate;
+    const errorOnPersonFields = isCPF ? !(!!cpf && !!birthDate) : false;
 
-    const errorOnCompanyFields = !isCPF && !!cnpj && !!openDate;
+    const errorOnCompanyFields = !isCPF ? !(!!cnpj && !!openDate) : false;
 
-    if (errorOnCommonFields && errorOnPersonFields && errorOnCompanyFields)
+    if (errorOnCommonFields || errorOnPersonFields || errorOnCompanyFields)
       return 400;
 
     return null;
